@@ -12,7 +12,7 @@ export class ProductController {
   }
 
   // return product details based on product id
-  @Get('/:id')
+  @Get(':id')
   getProductById(@Param('id') productId: string) {
     return this.productService.getProductById(productId);
   }

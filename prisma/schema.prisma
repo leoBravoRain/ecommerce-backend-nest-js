@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Product {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  id String @id @default(auto()) @map("_id") @db.ObjectId
 
   name             String
   photoUrl         String
@@ -19,4 +19,37 @@ model Product {
   price            Int
 
   @@map("products")
+}
+
+model Client {
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  firstName   String
+  lastName    String
+  address     String
+  city        String
+  state       String
+  phoneNumber String
+  zipCode     String
+  Sale        Sale[]
+
+  @@map("clients")
+}
+
+type ProductInput {
+  // TODO: add as ObjectId
+  productId String
+  quantity  Int
+}
+
+model Sale {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // relation with products
+  products ProductInput[]
+
+  // relation with client
+  clientId String @db.ObjectId
+  client   Client @relation(fields: [clientId], references: [id])
+
+  @@map("sales")
 }
