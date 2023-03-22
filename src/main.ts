@@ -8,6 +8,10 @@ async function bootstrap() {
 
   // removes all properties of a request’s body which are not in the DTO
   app.useGlobalPipes(new ValidationPipe({ whitelist: true }));
-  await app.listen(3000);
+
+  // TODO: enable only allowed host (as this is demo this is set this way)
+  app.enableCors({ origin: '*' });
+
+  await app.listen(3333);
 }
 bootstrap();
