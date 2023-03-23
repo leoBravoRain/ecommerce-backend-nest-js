@@ -1,73 +1,61 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Ecommerce backend demo app with Nest Js🚀
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+This is a demo projet I developed as part of my personal portfolio.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+This is an ecommerce API demo for serve the ecommerce frontend app.
 
-## Description
+This API contains:
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+1) Endpoint to get all products of the ecommerce.
+2) Endpoint to get product details (based on _product_id_)
+3) Endpoint to save a sale. This sale is created from a Client model and a list of Products from a cart sent from the frontend app.
+4) Based on the previous endpoints, it contains models for _Product_, _Client_ and _Sale_.
 
-## Installation
+As this is a demo app, it does not contain all the expected functionallities an ecommerce app should have.
 
-```bash
-$ npm install
-```
+## Full-stack project
 
-## Running the app
+This is part of a full-stack project, so this backend app is connected to a frontend app developed as part of personal portfolio too. So if you want to run this app locally, you should run the frontend at the same time.
 
-```bash
-# development
-$ npm run start
+As this is an API, it can be consulted by any client (like POSTMAN, curl, etc). But it makes sense to connect with its frontend app.
 
-# watch mode
-$ npm run start:dev
+> [Frontend project](https://github.com/leoBravoRain/ecommerce-frontend)
 
-# production mode
-$ npm run start:prod
-```
+## Backend clarification
 
-## Test
+I developed the same backend with other technology, Express. I developed this project just to use Nest Js.
 
-```bash
-# unit tests
-$ npm run test
+> [Backend project with Express](https://github.com/leoBravoRain/ecommerce-backend)
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
-```
+## Requisites 🔌
 
-## Support
+- **Node Versión**: v18.14.0
+- **NPM Versión**: 9.3.1
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+_Remember_: This app is connected to other frontend app, so if you want to run locally, you should run this frontend app too.
 
-## Stay in touch
+## Setup 🚀
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+**Environment variables**
+- Create .env file at the root directory (same as README.me) with the following variable `DATABASE_URL` (This app uses MongoDB as Database and Prisma as ODM).
 
-## License
+If you want to run this project locally, I recommend set `DATABASE_URL` as the direction to your MongoDB. For testing, I recommend to use [MongoDB Atlas](https://www.mongodb.com/atlas/database), because it has the setup required built-in for work correctly with MongoDB and Prisma.
 
-Nest is [MIT licensed](LICENSE).
+
+**Run locally**
+
+- _Install dependencies_: `npm run install`
+- _Run locally_: `npm run start:dev`
+
+## Highlitghts about the technology used in this project 📋
+
+ - This is a Node Js app using Nest Js as framework.
+ - This app uses MongoDB as Database and Prisma as ODM. 
+ - It contains a main file (_app.module.ts_) as a module to import all other modules used in the app.
+ - _prisma/_ folder at the root level, contains the schema for define the model entities, using Prisma.
+ - At the _/src/_ level, there are a folder for every module asociated with entities: _client_, _product_ and _sale_. Each has a module, controller (to manage request) and service (to do business logic: request to Data Base and logic associated).
+- The _/src/prisma_ module define the setup to use Prisma as service in other modules.
+- _/dto/_ subfolders contains DTO definition for validate the creation of entities in DB. It uses validators as decorators. For example, it uses _@IsString()_ decorator to validate that property has to be of type _string_.
+
+
